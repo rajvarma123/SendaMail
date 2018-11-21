@@ -6,20 +6,20 @@ namespace EmailSmtp
 {
     public class SendMail
     {
-        public string Subject;
+        public string Subject { get; set; }
         public string Body;
         public string From;
         public string To;
         public string Password;
     }
-    class Program
+   public class Program
     {
         static void Main(string[] args)
         {
             try
             {
                 // Credentials
-                
+
                 SendMail ss = new SendMail();
                 Console.WriteLine("enter your gmail");
                 ss.From = Console.ReadLine();
@@ -32,31 +32,8 @@ namespace EmailSmtp
                 ss.Body = Console.ReadLine();
                 Console.WriteLine("Enter for to address");
                 ss.To = Console.ReadLine();
-                var credentials = new NetworkCredential(ss.From, ss.Password);
                 // Mail message
-                var mail = new MailMessage()
-                {
-
-                    From = new MailAddress(ss.From),
-                    Subject = ss.Subject,
-                    Body = ss.Body,
-                };
-
-                mail.To.Add(new MailAddress(ss.To));
-
-                // Smtp client
-                var client = new SmtpClient()
-                {
-                    Port = 587,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.gmail.com",
-                    EnableSsl = true,
-                    Credentials = credentials
-                };
-
-                // Send it...         
-                client.Send(mail);
+                SendEmailToEmployee(ss);
             }
             catch (Exception ex)
             {
@@ -67,6 +44,35 @@ namespace EmailSmtp
 
             Console.WriteLine("Email sccessfully sent");
             Console.ReadKey();
+        }
+
+        private static void SendEmailToEmployee(SendMail ss)
+        {
+            var credentials = new NetworkCredential(ss.From, ss.Password);
+
+            var mail = new MailMessage()
+            {
+
+                From = new MailAddress(ss.From),
+                Subject = ss.Subject,
+                Body = ss.Body,
+            };
+
+            mail.To.Add(new MailAddress(ss.To));
+
+            // Smtp client
+            var client = new SmtpClient()
+            {
+                Port = 587,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Host = "smtp.gmail.com",
+                EnableSsl = true,
+                Credentials = credentials
+            };
+
+            // Send it...         
+            client.Send(mail);
         }
     }
 }
