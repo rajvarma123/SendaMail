@@ -20,20 +20,20 @@ namespace EmailSmtp
             {
                 // Credentials
 
-                SendMail ss = new SendMail();
+                SendMail sendmail = new SendMail();
                 Console.WriteLine("enter your gmail");
-                ss.From = Console.ReadLine();
+                sendmail.From = Console.ReadLine();
                 Console.WriteLine("enter your Password");
-                ss.Password = Console.ReadLine();
+                sendmail.Password = Console.ReadLine();
 
                 Console.WriteLine("enter the subject");
-                ss.Subject = Console.ReadLine();
+                sendmail.Subject = Console.ReadLine();
                 Console.WriteLine("enter the body");
-                ss.Body = Console.ReadLine();
+                sendmail.Body = Console.ReadLine();
                 Console.WriteLine("Enter for to address");
-                ss.To = Console.ReadLine();
+                sendmail.To = Console.ReadLine();
                 // Mail message
-                SendEmailToEmployee(ss);
+                SendEmailToEmployee(sendmail);
             }
             catch (Exception ex)
             {
