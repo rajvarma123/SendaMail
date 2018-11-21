@@ -11,17 +11,17 @@ namespace EmailSmtp
             try
             {
                 // Credentials
-                var credentials = new NetworkCredential("rajvarma007009@gmail.com", "9392522203");
+                var credentials = new NetworkCredential("testexample@gmail.com", "password");
 
                 // Mail message
                 var mail = new MailMessage()
                 {
-                    From = new MailAddress("rajvarma007009@gmail.com"),
+                    From = new MailAddress("testexample@gmail.com"),
                     Subject = "Test email.",
                     Body = "Test email body"
                 };
 
-                mail.To.Add(new MailAddress("amlakings20@gmail.com"));
+                mail.To.Add(new MailAddress("amlakings@gmail.com"));
 
                 // Smtp client
                 var client = new SmtpClient()
